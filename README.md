@@ -1,1 +1,1 @@
-# rubytictactoe
+Tic Tac Toe programmed in Ruby, using classes.

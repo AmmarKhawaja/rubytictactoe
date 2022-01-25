@@ -24,7 +24,11 @@ class Game
         return "#{placements[0]} | #{placements[1]} | #{placements[2]}\n#{placements[3]} | #{placements[4]} | #{placements[5]}\n#{placements[6]} | #{placements[7]} | #{placements[8]}\n"
     end
     def place_sign(coord, sign)
-        @placements[coord] = sign
+        if @placements[coord] == "X" or @placements[coord] == "O"
+            print "\nInvalid placement, turn forfeited.\n"
+        else
+            @placements[coord] = sign
+        end
         print board_formatted
     end
     def check_won(current_sign)
@@ -55,10 +59,8 @@ class Game
     end
     def switch_turn()
         if @switch == 2
-            print "A\n"
             @switch = 1
         elsif @switch == 1
-            print "B\n"
             @switch = 2
         end
     end
@@ -66,7 +68,6 @@ class Game
         return @switch
     end
 end
-
 
 def game_prompt
     print "Player 1 username: "
@@ -76,6 +77,9 @@ def game_prompt
     username = gets.chomp
     player2 = Player.new(username, "O")
     current_game = Game.new()
+
+    print current_game.board_formatted
+
     while current_game.check_won("X") == false and current_game.check_won("O") == false
         if current_game.which_turn() == 1
             print player1.saying()
