@@ -24,8 +24,8 @@ class Game
         return "#{placements[0]} | #{placements[1]} | #{placements[2]}\n#{placements[3]} | #{placements[4]} | #{placements[5]}\n#{placements[6]} | #{placements[7]} | #{placements[8]}\n"
     end
     def place_sign(coord, sign)
-        if @placements[coord] == "X" or @placements[coord] == "O"
-            print "\nInvalid placement, turn forfeited.\n"
+        if @placements[coord] == "X" or @placements[coord] == "O" or coord > 8
+            print "Invalid placement, turn forfeited.\n"
         else
             @placements[coord] = sign
         end
